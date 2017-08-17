@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block nav_bar %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ poolQuestion.title }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('pool_question') }}">Pool Questions List</a>
+                </li>
+                <li class="active">
+                    <strong>{{ poolQuestion.title }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h4>Edit Pool Questions</h4>
+                    &nbsp;
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'} })  }}
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Title</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Rate</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.rate, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Description</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-10">
+                            <button class="btn btn-sm btn-primary" type="submit">
+                                <strong>Save</strong>
+                            </button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

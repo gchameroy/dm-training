@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block nav_bar %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-8">
+            <h2>{{ poolQuestion.title }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('pool_question') }}">Pool Questions List</a>
+                </li>
+                <li class="active">
+                    <strong>{{ poolQuestion.title }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-4">
+            <div class="title-action">
+                <a href="{{ path('pool_question_edit', { 'id' : poolQuestion.id }) }}" class="btn btn-primary btn-sm">Edit pool question</a>
+                <a href="{{ path('pool_question_remove', { 'id' : poolQuestion.id }) }}" class="btn btn-danger btn-sm">Remove pool question</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h2>{{ poolQuestion.title }}</h2>
+                    <strong>Rate:</strong> {{ poolQuestion.rate }}%
+                </div>
+                <div class="ibox-content">
+                    {% for question in poolQuestion.questions %}
+                        <h3>
+                            Question N°{{ loop.index }}
+                            <a href="{{ path('question_remove', { 'id' : question.id }) }}" class="btn btn-xs btn-danger m-l-md">remove</a>
+                        </h3>
+                        <p>{{ question.title }}</p>
+                        {% for answer in question.answers %}
+                            <p>
+                                <input type="checkbox" disabled {% if answer.isTrue %} checked {% endif %} >
+                                <strong>{{ answer.title }}</strong>
+                            </p>
+                        {% endfor %}
+                    {% else %}
+                        <p>No Questions</p>
+                    {% endfor %}
+                    <a href="{{ path('question_add', {'poolQuestionId': poolQuestion.id}) }}" class="btn btn-sm btn-primary">Add Question</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="{{ asset('inspinia/img/profile_small.jpg') }}"/>
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">User 1</strong>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </li>
+            <li class="{{ (app.request.attributes.get('_route') == 'home') ? 'active' }}">
+                <a href="{{ path('home') }}">
+                    <i class="fa fa-th-large"></i>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+            </li>
+            <li class="{{ ((app.request.attributes.get('_route') == 'pool_video') or (app.request.attributes.get('_route') == 'video')) ? 'active' }}">
+                <a href="{{ path('pool_video') }}">
+                    <i class="fa fa-video-camera"></i>
+                    <span class="nav-label">Videos</span>
+                </a>
+            </li>
+            <li class="{{ ((app.request.attributes.get('_route') == 'pool_question') or (app.request.attributes.get('_route') == 'question')) ? 'active' }}">
+                <a href="{{ path('pool_question') }}">
+                    <i class="fa fa-question"></i>
+                    <span class="nav-label">Questions</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

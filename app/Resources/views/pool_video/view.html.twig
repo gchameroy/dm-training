@@ -1,0 +1,79 @@
+
+{% extends 'base.html.twig' %}
+
+{% block nav_bar %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-8">
+            <h2>{{ poolVideo.title }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('pool_video') }}">Pool Video List</a>
+                </li>
+                <li class="active">
+                    <strong>{{ poolVideo.title }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-4">
+            <div class="title-action">
+                <a href="{{ path('pool_video_edit', { 'id' : poolVideo.id }) }}" class="btn btn-primary btn-sm">Edit pool video</a>
+                <a href="{{ path('pool_video_remove', { 'id' : poolVideo.id }) }}" class="btn btn-danger btn-sm">Remove pool video</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h2>{{ poolVideo.title }}</h2>
+                    <p>{{ poolVideo.description }}</p>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% for video in poolVideo.videos %}
+                                <div class="file-box">
+                                    <div class="file">
+                                        <a href="{{ path('video_remove', { 'id' : video.id }) }}">
+                                                <span class="pull-right border-bottom border-left p-xxs">
+                                                    <i class="fa fa-trash text-danger"></i>
+                                                </span>
+                                        </a>
+                                        <div class="icon">
+                                            <i class="img-responsive fa fa-film"></i>
+                                        </div>
+                                        <div class="file-name">
+                                            Video N°{{ loop.index }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p>No Videos</p>
+                            {% endfor %}
+
+                            <div class="file-box">
+                                <div class="file">
+                                    <a href="{{ path('video_add', {'poolVideoId': poolVideo.id}) }}">
+                                        <span class="pull-right p-xxs"></span>
+                                        <div class="icon">
+                                            <i class="img-responsive fa fa-plus"></i>
+                                        </div>
+                                        <div class="file-name">
+                                            Upload Video
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

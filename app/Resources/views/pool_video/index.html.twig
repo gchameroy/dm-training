@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block nav_bar %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Pool Video List</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                <li class="active">
+                    <strong>Pool Video List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                <a href="{{ path('pool_video_add') }}" class="btn btn-primary btn-sm">Create new pool video</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h4>Pool video list</h4>
+                </div>
+                <div class="ibox-content">
+                    <div class="project-list">
+                        <table class="table table-hover">
+                            <tbody>
+                            {% for poolVideo in poolVideos %}
+                                <tr>
+                                    <td>#{{ loop.index }}</td>
+                                    <td class="project-title" nowrap>
+                                        <a href="{{ path('pool_video_view', {'id': poolVideo.id }) }}">{{ poolVideo.title }}</a>
+                                        <br>
+                                        <p style="width:350px;overflow: hidden; text-overflow: ellipsis;">
+                                            <small>{{ poolVideo.description }}</small>
+                                        </p>
+                                    </td>
+                                    <td nowrap>{{ poolVideo.videos|length }} videos</td>
+                                    <td class="project-actions">
+                                        <a href="{{ path('pool_video_view', {'id': poolVideo.id }) }}" class="btn btn-primary btn-sm">View pool video</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>Pool Video List is empty</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

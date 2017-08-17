@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+        <title>{% block title %}{% endblock %}</title>
+	
+        {% block stylesheets %}
+			<link href="{{ asset('inspinia/css/bootstrap.min.css') }}" rel="stylesheet">
+			<link href="{{ asset('inspinia/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+			<link href="{{ asset('inspinia/css/animate.css') }}" rel="stylesheet">
+			<link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
+		{% endblock %}
+    </head>
+    <body>
+		<div id="wrapper">
+            {% block sidebar %}
+                {% include 'sidebar.html.twig' %}
+            {% endblock %}
+
+			<div id="page-wrapper" class="gray-bg">
+				{% block page_head %}
+                    {% include 'layout/page_header.html.twig' %}
+				{% endblock %}
+				{% block nav_bar %}{% endblock %}
+				{% block content %}{% endblock %}
+				{% block footer %}
+					<div class="footer">
+						<div>
+							<strong>Copyright</strong> @ 2017
+						</div>
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+		{% block javascripts %}
+			<!-- Mainly scripts -->
+			<script src="{{ asset('inspinia/js/jquery-3.1.1.min.js') }}"></script>
+			<script src="{{ asset('inspinia/js/bootstrap.min.js') }}"></script>
+			<script src="{{ asset('inspinia/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+			<script src="{{ asset('inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+			<!-- Custom and plugin javascript -->
+			<script src="{{ asset('inspinia/js/inspinia.js') }}"></script>
+			<script src="{{ asset('inspinia/js/plugins/pace/pace.min.js') }}"></script>
+		{% endblock %}
+    </body>
+</html>
