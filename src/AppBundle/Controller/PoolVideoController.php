@@ -39,7 +39,6 @@ class PoolVideoController extends Controller
     {
 
         $PoolVideo = $this->getDoctrine()->getRepository('AppBundle:PoolVideo')->find($id);
-        dump($PoolVideo);
         if (!$PoolVideo) {
             $this->PoolVideoNotFound();
         }
